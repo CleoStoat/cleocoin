@@ -11,16 +11,19 @@ def give_cmd(
     if update.effective_message.reply_to_message is None:
         text = "Please use this command replying to the a message sent by the user whom you want to give coins to"
         update.effective_message.reply_text(text=text, quote=True)
+        return
 
     if len(context.args) < 1:
         text = "Please specify the ammount of coins you want to give"
         update.effective_message.reply_text(text=text, quote=True)
+        return
 
     try:
         int(context.args[0])
     except ValueError:
         text = "Please specify an integer value of coins"
         update.effective_message.reply_text(text=text, quote=True)
+        return
 
     ammount = int(context.args[0])
     from_user_id = update.effective_user.id
