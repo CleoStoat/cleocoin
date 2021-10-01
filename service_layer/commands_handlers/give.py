@@ -39,7 +39,12 @@ def give_cmd(
             return
         
         uow.repo.give_coins(from_user_id, to_user_id, ammount)
-        text = f"You gave {ammount} coins to {to_fullname}.\n\n{from_fullname}: {from_user_coin_ammount-ammount}(-{ammount})\n{to_fullname}: {to_user_coin_ammount+ammount}(+{ammount})"
+
+        
+        from_new_coin_ammount = uow.repo.get_coins(from_user_id)
+        to_new_coin_ammount = uow.repo.get_coins(to_user_id)
+
+        text = f"You gave {ammount} coins to {to_fullname}.\n\n{to_fullname}: {to_new_coin_ammount}(+{ammount})\n{from_fullname}: {from_new_coin_ammount}(-{ammount})"
         update.effective_message.reply_text(text=text, quote=True)
         uow.commit()
     
