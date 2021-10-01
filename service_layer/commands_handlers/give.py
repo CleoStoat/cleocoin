@@ -28,7 +28,7 @@ def give_cmd(
         update.effective_message.reply_text(text=text, quote=True)
         return
 
-    if update.effective_user.id == update.edited_message.reply_to_message.from_user.id:
+    if update.effective_user.id == update.effective_message.reply_to_message.from_user.id:
         text = "You can't give coins to yourself."
         update.effective_message.reply_text(text=text, quote=True)
         return
