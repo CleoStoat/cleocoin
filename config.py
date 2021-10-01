@@ -24,3 +24,9 @@ def get_bot_owner_user_id() -> int:
 
 def get_initial_coin_ammount() -> int:
     return int(os.getenv("INITIAL_COIN_AMMOUT", 100))
+
+def get_api_id() -> int:
+    return int(os.getenv("API_ID", 1234))
+
+def get_api_hash() -> str:
+    return os.getenv("API_HASH", "1234")
