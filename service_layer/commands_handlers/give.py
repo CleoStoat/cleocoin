@@ -19,7 +19,10 @@ def give_cmd(
         return
 
     try:
-        int(context.args[0])
+        if int(context.args[0]) <= 0:
+            text = "Coin ammount must be greater than zero"
+            update.effective_message.reply_text(text=text, quote=True)
+            return       
     except ValueError:
         text = "Please specify an integer value of coins"
         update.effective_message.reply_text(text=text, quote=True)
